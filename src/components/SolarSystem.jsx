@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { Stars } from '@react-three/drei'
+import { Stars, OrbitControls } from '@react-three/drei'
 import Planet from './Planet'
 
 const PLANETS = [
@@ -26,18 +26,22 @@ function SolarSystem({ isPlaying, currentDate, setCurrentDate, speed }) {
   })
 
   return (
-    <group ref={systemRef}>
-      <Stars 
-        radius={100} 
-        depth={50} 
-        count={5000} 
-        factor={4} 
-        saturation={0} 
-        fade 
-      />
+    <>
+      <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
       
-      <ambientLight intensity={0.8} />
-      <pointLight position={[0, 0, 0]} intensity={3} />
+      <group ref={systemRef}>
+        <Stars 
+          radius={100} 
+          depth={50} 
+          count={5000} 
+          factor={4} 
+          saturation={0} 
+          fade 
+        />
+        
+        <ambientLight intensity={1.0} />
+        <pointLight position={[0, 0, 0]} intensity={5} />
+        <directionalLight position={[0, 10, 0]} intensity={2} />
       
       <mesh position={[0, 0, 0]}>
         <sphereGeometry args={[1.5, 32, 32]} />
@@ -64,7 +68,8 @@ function SolarSystem({ isPlaying, currentDate, setCurrentDate, speed }) {
         eccentricity={0.05}
         showOrbit={false}
       />
-    </group>
+      </group>
+    </>
   )
 }
 

@@ -11,7 +11,10 @@ function App() {
   
   return (
     <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
-      <Canvas camera={{ position: [0, 50, 0], fov: 75 }}>
+      <Canvas 
+        camera={{ position: [0, 50, 0], fov: 75 }}
+        style={{ background: '#000000' }}
+      >
         <SolarSystem 
           isPlaying={isPlaying} 
           currentDate={currentDate} 
